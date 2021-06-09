@@ -1,9 +1,10 @@
 <template>
 	<div class="preview">
-		<h3 class="previewTitle">
-			{{ article.fields.title }}
-		</h3>
-		<small>{{ article.fields.publishDate }}</small>
+		<div class="previewImage">
+			<img :src="article.fields.heroImage.fields.file.url" />
+		</div>
+		<h3 class="previewTitle">{{ article.fields.title }}</h3>
+		<small>{{ publishDate }}</small>
 		<p v-html="article.fields.description"></p>
 	</div>
 </template>
@@ -12,6 +13,12 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import { IBlogPost } from '~/types/generated/contentful';
 
+const DATE_FORMAT = new Intl.DateTimeFormat('en', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+
 export default defineComponent({
 	props: {
 		article: {
@@ -19,10 +26,27 @@ export default defineComponent({
 			required: true,
 		},
 	},
+	setup(props) {
+		const publishDate = new Date(props.article.fields.publishDate);
+		return {
+			publishDate: DATE_FORMAT.format(publishDate),
+		};
+	},
 });
 </script>
 
 <style scoped>
+.previewImage {
+	overflow: hidden;
+	max-height: 170px;
+}
+.previewImage img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
+}
+
 .previewTitle {
 	font-size: 1.5em;
 }

@@ -15,6 +15,3 @@ For now this is a Vue version of the Contentful Gatsby Blog example. So you'll n
 
 ```
 The `CTF_MGMT_TOKEN` is only needed if you change the data types on Contentful and want to re-generate the types `types/generated/contentful.d.ts`
-
-### Caveats
-Currently only the prod build works as `nuxt-vite` is still experimental and it seems to not deploy an internal Contentful dependency.

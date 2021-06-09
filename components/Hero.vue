@@ -1,5 +1,8 @@
 <template>
 	<div class="hero">
+		<div v-if="author.fields.image" class="heroImage">
+			<img :src="author.fields.image.fields.file.url" />
+		</div>
 		<div class="heroDetails">
 			<h3 class="heroHeadline">{{ author.fields.name }}</h3>
 			<p class="heroTitle">{{ author.fields.title }}</p>
@@ -37,6 +40,17 @@ export default defineComponent({
   */
 	height: 61.8vh;
 	max-height: 400px;
+	position: relative;
+	overflow: hidden;
+}
+.heroImage img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
 }
 
 .heroDetails {

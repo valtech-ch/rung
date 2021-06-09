@@ -1,17 +1,13 @@
 <template>
 	<div class="container">
-		<Logo />
-		<h1 class="title">Rung</h1>
-		<div v-if="person && posts">
-			<Hero :author="person" />
-			<div class="wrapper">
-				<h2 class="section-headline">Recent articles</h2>
-				<ul class="article-list">
-					<li v-for="post in posts.items" :key="post.sys.id">
-						<ArticlePreview :article="post" />
-					</li>
-				</ul>
-			</div>
+		<Hero :author="person" />
+		<div class="wrapper">
+			<h2 class="section-headline">Recent articles</h2>
+			<ul class="article-list">
+				<li v-for="post in posts.items" :key="post.sys.id">
+					<ArticlePreview :article="post" />
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
@@ -33,7 +29,7 @@ export default defineComponent({
 		const posts = useAsync(() => {
 			return client.getEntries<IBlogPost>({
 				content_type: CTF_BLOG_POST_TYPE_ID,
-				order: '-sys.createdAt',
+				order: '-fields.publishDate',
 			});
 		});
 		return {
@@ -45,37 +41,10 @@ export default defineComponent({
 </script>
 
 <style>
-@font-face {
-	font-family: 'Avenir';
-	font-weight: 400;
-	font-style: normal;
-	src: url('/avenir-400.woff2') format('woff2');
-	font-display: swap;
-}
-
-body {
-	font-family: 'Avenir', Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 1em;
-	line-height: 1.65;
-	color: #373f49;
-	background: #eee;
-	margin: 0;
-}
-
-img {
-	display: block;
-	width: 100%;
-}
-
-h1,
-h2,
-h3 {
-	font-size: 2em;
-	font-weight: normal;
-}
-
-a {
-	color: currentColor;
+.container {
+	max-width: 1180px;
+	margin: 50px auto 0px auto;
+	background: #fff;
 }
 
 .wrapper {

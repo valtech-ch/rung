@@ -28,14 +28,10 @@ export default {
 	components: true,
 
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-	buildModules: [
-		'nuxt-vite',
-		'@nuxtjs/composition-api/module',
-		'@nuxt/typescript-build',
-	],
+	buildModules: ['@nuxtjs/composition-api/module', '@nuxt/typescript-build'],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: ['@nuxtjs/axios'],
+	modules: ['@nuxtjs/axios', '@nuxt/image'],
 
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {},
