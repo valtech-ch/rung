@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<nav role="navigation" class="top-nav">
+			<ul>
+				<li>
+					<NuxtLink to="/">Home</NuxtLink>
+				</li>
+			</ul>
+		</nav>
 		<Nuxt />
 	</div>
 </template>
@@ -38,9 +45,27 @@ a {
 	color: currentColor;
 }
 
+/* Navigation */
+.top-nav {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 20vh;
+	max-height: 100px;
+	font-size: 1.25em;
+}
+.top-nav li {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 1em;
+}
+
+/* Content */
 .container {
 	max-width: 1180px;
-	margin: 50px auto 0px auto;
+	margin: 0px auto;
 	background: #fff;
 }
 

@@ -1,7 +1,8 @@
 <template>
 	<div class="container">
 		<Hero
-			:image="author.fields.image.fields.file.url"
+			v-if="author"
+			:image="author.fields.image ? author.fields.image.fields.file.url : ''"
 			:headline="author.fields.name"
 			:title="author.fields.title"
 			:lead="author.fields.shortBio"
