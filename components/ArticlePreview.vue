@@ -3,7 +3,11 @@
 		<div class="previewImage">
 			<img :src="article.fields.heroImage.fields.file.url" />
 		</div>
-		<h3 class="previewTitle">{{ article.fields.title }}</h3>
+		<h3 class="previewTitle">
+			<NuxtLink :to="`/${article.fields.slug}`">{{
+				article.fields.title
+			}}</NuxtLink>
+		</h3>
 		<small>{{ publishDate }}</small>
 		<p v-html="article.fields.description"></p>
 	</div>
@@ -12,12 +16,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import { IBlogPost } from '~/types/generated/contentful';
-
-const DATE_FORMAT = new Intl.DateTimeFormat('en', {
-	year: 'numeric',
-	month: 'long',
-	day: 'numeric',
-});
+import { formatDate } from '~/utils/blog';
 
 export default defineComponent({
 	props: {
@@ -27,9 +26,9 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const publishDate = new Date(props.article.fields.publishDate);
+		const publishDate = formatDate(props.article.fields.publishDate);
 		return {
-			publishDate: DATE_FORMAT.format(publishDate),
+			publishDate,
 		};
 	},
 });

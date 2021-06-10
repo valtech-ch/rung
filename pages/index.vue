@@ -1,6 +1,11 @@
 <template>
 	<div class="container">
-		<Hero :author="person" />
+		<Hero
+			:image="author.fields.image.fields.file.url"
+			:headline="author.fields.name"
+			:title="author.fields.title"
+			:lead="author.fields.shortBio"
+		/>
 		<div class="wrapper">
 			<h2 class="section-headline">Recent articles</h2>
 			<ul class="article-list">
@@ -15,17 +20,17 @@
 <script lang="ts">
 import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api';
 import { IBlogPost, IPerson } from '~/types/generated/contentful';
+import { CTF_BLOG_POST_TYPE_ID } from '~/utils/blog';
 import useContentful from '~/plugins/contentful';
 
 const CTF_PERSON_ID = '15jwOBqpxqSAOy2eOO4S0m';
-const CTF_BLOG_POST_TYPE_ID = 'blogPost';
 
 export default defineComponent({
 	setup() {
 		const { env } = useContext();
 		const { client } = useContentful(env);
 
-		const person = useAsync(() => client.getEntry<IPerson>(CTF_PERSON_ID));
+		const author = useAsync(() => client.getEntry<IPerson>(CTF_PERSON_ID));
 		const posts = useAsync(() => {
 			return client.getEntries<IBlogPost>({
 				content_type: CTF_BLOG_POST_TYPE_ID,
@@ -33,7 +38,7 @@ export default defineComponent({
 			});
 		});
 		return {
-			person,
+			author,
 			posts,
 		};
 	},
@@ -41,18 +46,6 @@ export default defineComponent({
 </script>
 
 <style>
-.container {
-	max-width: 1180px;
-	margin: 50px auto 0px auto;
-	background: #fff;
-}
-
-.wrapper {
-	width: calc(100% - 10vmin);
-	margin: 0 auto;
-	padding: 5vmin 0;
-}
-
 /**
  * article grid
  */

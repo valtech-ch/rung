@@ -1,27 +1,40 @@
 <template>
 	<div class="hero">
-		<div v-if="author.fields.image" class="heroImage">
-			<img :src="author.fields.image.fields.file.url" />
+		<div v-if="image" class="heroImage">
+			<img :src="image" />
 		</div>
-		<div class="heroDetails">
-			<h3 class="heroHeadline">{{ author.fields.name }}</h3>
-			<p class="heroTitle">{{ author.fields.title }}</p>
-			<p>{{ author.fields.shortBio }}</p>
+		<div v-if="hasDetails" class="heroDetails">
+			<h3 v-if="headline" class="heroHeadline">{{ headline }}</h3>
+			<p v-if="title" class="heroTitle">{{ title }}</p>
+			<p v-if="lead">{{ lead }}</p>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import { IPerson } from '~/types/generated/contentful';
 
 export default defineComponent({
 	props: {
-		author: {
-			type: Object as () => IPerson,
-			required: true,
+		image: {
+			type: String,
+		},
+		headline: {
+			type: String,
+		},
+		title: {
+			type: String,
+		},
+		lead: {
+			type: String,
 		},
 	},
+	setup(props) {
+		const hasDetails = props.headline || props.title;
+		return {
+			hasDetails,
+		};
+	}
 });
 </script>
 

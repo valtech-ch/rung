@@ -37,4 +37,16 @@ h3 {
 a {
 	color: currentColor;
 }
+
+.container {
+	max-width: 1180px;
+	margin: 50px auto 0px auto;
+	background: #fff;
+}
+
+.wrapper {
+	width: calc(100% - 10vmin);
+	margin: 0 auto;
+	padding: 5vmin 0;
+}
 </style>

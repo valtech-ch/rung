@@ -4,95 +4,95 @@ import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 export interface IBlogPostFields {
-  /** Title */
-  title: string;
+	/** Title */
+	title: string;
 
-  /** Slug */
-  slug: string;
+	/** Slug */
+	slug: string;
 
-  /** Hero Image */
-  heroImage: Asset;
+	/** Hero Image */
+	heroImage: Asset;
 
-  /** Description */
-  description: string;
+	/** Description */
+	description: string;
 
-  /** Body */
-  body: string;
+	/** Body */
+	body: string;
 
-  /** Author */
-  author?: IPerson | undefined;
+	/** Author */
+	author?: IPerson | undefined;
 
-  /** Publish Date */
-  publishDate: string;
+	/** Publish Date */
+	publishDate: string;
 
-  /** Tags */
-  tags?: ('general' | 'javascript' | 'static-sites')[] | undefined;
+	/** Tags */
+	tags?: ('general' | 'javascript' | 'static-sites')[] | undefined;
 }
 
 export interface IBlogPost extends Entry<IBlogPostFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'blogPost';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'blogPost';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
 }
 
 export interface IPersonFields {
-  /** Name */
-  name: string;
+	/** Name */
+	name: string;
 
-  /** Title */
-  title: string;
+	/** Title */
+	title: string;
 
-  /** Company */
-  company: string;
+	/** Company */
+	company: string;
 
-  /** Short Bio */
-  shortBio: string;
+	/** Short Bio */
+	shortBio: string;
 
-  /** Email */
-  email?: string | undefined;
+	/** Email */
+	email?: string | undefined;
 
-  /** Phone */
-  phone?: string | undefined;
+	/** Phone */
+	phone?: string | undefined;
 
-  /** Facebook */
-  facebook?: string | undefined;
+	/** Facebook */
+	facebook?: string | undefined;
 
-  /** Twitter */
-  twitter?: string | undefined;
+	/** Twitter */
+	twitter?: string | undefined;
 
-  /** Github */
-  github?: string | undefined;
+	/** Github */
+	github?: string | undefined;
 
-  /** Image */
-  image?: Asset | undefined;
+	/** Image */
+	image?: Asset | undefined;
 }
 
 export interface IPerson extends Entry<IPersonFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'person';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'person';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
 }
 
 export type CONTENT_TYPE = 'blogPost' | 'person';
