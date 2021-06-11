@@ -1,6 +1,7 @@
 <template>
 	<div class="text">
 		<strong>{{ entry.fields.title }}</strong>
+		<!-- eslint-disable-next-line vue/no-v-html -->
 		<div v-html="html"></div>
 	</div>
 </template>

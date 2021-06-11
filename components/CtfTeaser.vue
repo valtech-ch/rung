@@ -19,6 +19,6 @@ export default defineComponent({
 			type: Object as () => ITeaser,
 			required: true,
 		},
-	}
+	},
 });
 </script>
