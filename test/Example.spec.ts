@@ -1,7 +1,7 @@
 // import { mount } from '@vue/test-utils';
 
 import { createModel } from './helper/TestUtils';
-import { IText, ITextFields } from '~/types/generated/contentful';
+import { ITitle, ITitleFields } from '~/types/generated/contentful';
 
 describe('ArticlePreview', () => {
 	it('renders', () => {
@@ -18,13 +18,14 @@ describe('ArticlePreview', () => {
 		expect(wrapper.find('p').text()).toContain('Test description');
 		*/
 
-		const text = createModel<ITextFields, 'text', IText>({
+		const text = createModel<ITitleFields, 'text', ITitle>(
+			{
 				title: 'Title',
-				text: 'Text',
+				variant: 'heading1',
 			},
 			'text'
 		);
 
-		expect(text.fields.text).toBe('Text');
+		expect(text.fields.title).toBe('Title');
 	});
 });

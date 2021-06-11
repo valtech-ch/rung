@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<CtfButton v-if="type === 'button'" :entry="entry" />
-		<div v-if="type === 'grid'">GRID</div>
+		<CtfGrid v-if="type === 'grid'" :entry="entry" />
 		<CtfTeaser v-if="type === 'teaser'" :entry="entry" />
 		<CtfText v-if="type === 'text'" :entry="entry" />
 		<CtfTitle v-if="type === 'title'" :entry="entry" />
