@@ -1,4 +1,4 @@
-import { Entry } from 'contentful';
+import { Entry, EntryCollection } from 'contentful';
 
 export function createModel<
 	TFields,
@@ -29,4 +29,22 @@ export function createModel<
 		},
 	};
 	return entry as TModel;
+}
+
+export function createSingletonCollection<
+	TFields,
+	TId extends string,
+	TModel extends Entry<TFields>
+>(fields: TFields, typeId: TId): EntryCollection<TModel> {
+	const contentPage = createModel<TFields, TId, TModel>(fields, typeId);
+	return {
+		total: 1,
+		skip: 0,
+		limit: 0,
+		items: [contentPage as unknown as Entry<TModel>],
+		toPlainObject: (): object => {
+			return {};
+		},
+		stringifySafe: (): string => '',
+	};
 }
