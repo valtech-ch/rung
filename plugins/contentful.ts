@@ -1,3 +1,4 @@
+import { useContext } from '@nuxtjs/composition-api';
 import {
 	ContentfulClientApi,
 	CreateClientParams,
@@ -8,9 +9,8 @@ export interface UseContentfulType {
 	client: ContentfulClientApi;
 }
 
-export default function useContentful(
-	env: Record<string, any>
-): UseContentfulType {
+export default function useContentful(): UseContentfulType {
+	const { env } = useContext();
 	const config: CreateClientParams = {
 		space: env.CTF_SPACE_ID || '',
 		accessToken: env.CTF_CDA_ACCESS_TOKEN || '',

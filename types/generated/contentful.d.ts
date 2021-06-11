@@ -3,33 +3,71 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
-export interface IBlogPostFields {
+export interface IButtonFields {
+	/** Title */
+	title: string;
+
+	/** Link */
+	link: IContentPage;
+
+	/** Variant */
+	variant: 'primary' | 'secondary';
+}
+
+export interface IButton extends Entry<IButtonFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'button';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface IConfigFields {
+	/** Title */
+	title: 'Config';
+
+	/** Navigation */
+	navigation?: IContentPage[] | undefined;
+}
+
+export interface IConfig extends Entry<IConfigFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'config';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface IContentPageFields {
 	/** Title */
 	title: string;
 
 	/** Slug */
 	slug: string;
 
-	/** Hero Image */
-	heroImage: Asset;
-
-	/** Description */
-	description: string;
-
-	/** Body */
-	body: string;
-
-	/** Author */
-	author?: IPerson | undefined;
-
-	/** Publish Date */
-	publishDate: string;
-
-	/** Tags */
-	tags?: ('general' | 'javascript' | 'static-sites')[] | undefined;
+	/** Sections */
+	sections: (IButton | IGrid | ITeaser | IText | ITitle)[];
 }
 
-export interface IBlogPost extends Entry<IBlogPostFields> {
+export interface IContentPage extends Entry<IContentPageFields> {
 	sys: {
 		id: string;
 		type: string;
@@ -38,7 +76,7 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
 		locale: string;
 		contentType: {
 			sys: {
-				id: 'blogPost';
+				id: 'contentPage';
 				linkType: 'ContentType';
 				type: 'Link';
 			};
@@ -46,39 +84,114 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
 	};
 }
 
-export interface IPersonFields {
-	/** Name */
-	name: string;
+export interface IGridFields {
+	/** Title */
+	title: string;
+
+	/** Items */
+	items: IGridItem[];
+
+	/** spacing */
+	spacing?: number | undefined;
+}
+
+export interface IGrid extends Entry<IGridFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'grid';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface IGridItemFields {
+	/** Title */
+	title: string;
+
+	/** component */
+	component: IButton | ITeaser | ITitle;
+
+	/** xs */
+	xs?: number | undefined;
+
+	/** sm */
+	sm?: number | undefined;
+
+	/** md */
+	md?: number | undefined;
+
+	/** lg */
+	lg?: number | undefined;
+}
+
+export interface IGridItem extends Entry<IGridItemFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'gridItem';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface ILinkFields {
+	/** Title */
+	title: string;
+
+	/** Link */
+	link: IContentPage;
+
+	/** Variant */
+	variant: 'primary' | 'secondary';
+}
+
+export interface ILink extends Entry<ILinkFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'link';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface ITeaserFields {
+	/** Pretitle */
+	pretitle?: string | undefined;
 
 	/** Title */
 	title: string;
 
-	/** Company */
-	company: string;
-
-	/** Short Bio */
-	shortBio: string;
-
-	/** Email */
-	email?: string | undefined;
-
-	/** Phone */
-	phone?: string | undefined;
-
-	/** Facebook */
-	facebook?: string | undefined;
-
-	/** Twitter */
-	twitter?: string | undefined;
-
-	/** Github */
-	github?: string | undefined;
+	/** Description */
+	description?: string | undefined;
 
 	/** Image */
 	image?: Asset | undefined;
 }
 
-export interface IPerson extends Entry<IPersonFields> {
+export interface ITeaser extends Entry<ITeaserFields> {
 	sys: {
 		id: string;
 		type: string;
@@ -87,7 +200,7 @@ export interface IPerson extends Entry<IPersonFields> {
 		locale: string;
 		contentType: {
 			sys: {
-				id: 'person';
+				id: 'teaser';
 				linkType: 'ContentType';
 				type: 'Link';
 			};
@@ -95,8 +208,87 @@ export interface IPerson extends Entry<IPersonFields> {
 	};
 }
 
-export type CONTENT_TYPE = 'blogPost' | 'person';
+export interface ITextFields {
+	/** Title */
+	title: string;
 
-export type LOCALE_CODE = 'en-US';
+	/** Text */
+	text: Document;
+}
 
-export type CONTENTFUL_DEFAULT_LOCALE_CODE = 'en-US';
+export interface IText extends Entry<ITextFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'text';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface ITitleFields {
+	/** Title */
+	title: string;
+
+	/** Variant */
+	variant:
+		| 'heading1'
+		| 'heading2'
+		| 'heading3'
+		| 'heading4'
+		| 'heading5'
+		| 'heading6'
+		| 'body1'
+		| 'body2';
+
+	/** Component */
+	component?:
+		| 'h1'
+		| 'h2'
+		| 'h3'
+		| 'h4'
+		| 'h5'
+		| 'h6'
+		| 'p'
+		| 'span'
+		| undefined;
+}
+
+export interface ITitle extends Entry<ITitleFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'title';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export type CONTENT_TYPE =
+	| 'button'
+	| 'config'
+	| 'contentPage'
+	| 'grid'
+	| 'gridItem'
+	| 'link'
+	| 'teaser'
+	| 'text'
+	| 'title';
+
+export type LOCALE_CODE = 'de' | 'en';
+
+export type CONTENTFUL_DEFAULT_LOCALE_CODE = 'en';
