@@ -2,9 +2,11 @@
 	<div class="wrapper">
 		<h1>{{ title }}</h1>
 		<div class="content">
-			<div v-for="section in sections" :key="section.sys.id">
-				{{ section.sys.contentType.sys.id }}
-			</div>
+			<CtfSection
+				v-for="section in sections"
+				:key="section.sys.id"
+				:entry="section"
+			/>
 		</div>
 	</div>
 </template>
