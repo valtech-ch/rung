@@ -1,5 +1,5 @@
 <template>
-	<NuxtLink class="btn" :class="entry.fields.variant" :to="slug">{{
+	<NuxtLink class="btn" :class="entry.fields.variant" :to="`/${slug}`">{{
 		entry.fields.title
 	}}</NuxtLink>
 </template>
