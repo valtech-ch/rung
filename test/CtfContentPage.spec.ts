@@ -1,9 +1,8 @@
 import { mount } from '@vue/test-utils';
-
 import { ref } from '@nuxtjs/composition-api';
 import { createSingletonCollection } from './helper/TestUtils';
-import contentfulConfig from '~/.contentful.json';
 import { IContentPage, IContentPageFields } from '~/types/generated/contentful';
+import contentfulConfig from '~/.contentful.json';
 import CtfContentPage from '~/components/CtfContentPage.vue';
 
 const contentPages = createSingletonCollection<
@@ -20,10 +19,7 @@ const contentPages = createSingletonCollection<
 );
 
 jest.mock('@nuxtjs/composition-api', () => ({
-	computed: jest.requireActual('@nuxtjs/composition-api').computed,
-	defineComponent: jest.requireActual('@nuxtjs/composition-api')
-		.defineComponent,
-	ref: jest.requireActual('@nuxtjs/composition-api').ref,
+	...jest.requireActual('@nuxtjs/composition-api'),
 	useContext: () => ({
 		env: contentfulConfig,
 	}),
