@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 
 import { createModel } from './helper/TestUtils';
 import { ITitle, ITitleFields } from '~/types/generated/contentful';
-import CtfTitle from '~/components/CtfTitle.vue';
+import CtfTitle from '~/components/ctf/content/Title.vue';
 
 const entry = createModel<ITitleFields, 'text', ITitle>(
 	{

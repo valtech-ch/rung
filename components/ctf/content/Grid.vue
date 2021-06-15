@@ -1,7 +1,7 @@
 <template>
 	<div class="grid">
 		<strong>{{ entry.fields.title }}</strong>
-		<CtfGridItem
+		<CtfContentGridItem
 			v-for="item in entry.fields.items"
 			:key="item.sys.id"
 			:entry="item"

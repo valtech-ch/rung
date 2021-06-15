@@ -4,7 +4,7 @@ import {
 	ILinkExternal,
 	ILinkExternalFields,
 } from '~/types/generated/contentful';
-import CtfLinkExternal from '~/components/CtfLinkExternal.vue';
+import CtfLinkExternal from '~/components/ctf/content/LinkExternal.vue';
 
 const entry = createModel<ILinkExternalFields, 'linkExternal', ILinkExternal>(
 	{

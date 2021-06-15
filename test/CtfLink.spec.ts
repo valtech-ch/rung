@@ -4,7 +4,7 @@ import { contentPage, createModel, localVue } from './helper/TestUtils';
 import NuxtLink from '~/.nuxt/components/nuxt-link.client';
 import { ILink, ILinkFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
-import CtfLink from '~/components/CtfLink.vue';
+import CtfLink from '~/components/ctf/content/Link.vue';
 
 const entry = createModel<ILinkFields, 'link', ILink>(
 	{

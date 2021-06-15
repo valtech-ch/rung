@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils';
 import { asset } from './helper/Asset';
 import { createModel } from './helper/TestUtils';
 import { ITeaser, ITeaserFields } from '~/types/generated/contentful';
-import CtfTeaser from '~/components/CtfTeaser.vue';
+import CtfTeaser from '~/components/ctf/content/Teaser.vue';
 
 const entry = createModel<ITeaserFields, 'teaser', ITeaser>(
 	{

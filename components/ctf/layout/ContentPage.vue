@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<h1>{{ title }}</h1>
 		<div class="content">
-			<CtfSection
+			<CtfContentSection
 				v-for="section in sections"
 				:key="section.sys.id"
 				:entry="section"

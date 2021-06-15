@@ -5,7 +5,7 @@ import { createModel } from './helper/TestUtils';
 import { document } from './helper/Document';
 import { IText, ITextFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
-import CtfText from '~/components/CtfText.vue';
+import CtfText from '~/components/ctf/content/Text.vue';
 
 const entry = createModel<ITextFields, 'text', IText>(
 	{

@@ -4,7 +4,7 @@ import { contentPage, createModel, localVue } from './helper/TestUtils';
 import NuxtLink from '~/.nuxt/components/nuxt-link.client';
 import { IButton, IButtonFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
-import CtfButton from '~/components/CtfButton.vue';
+import CtfButton from '~/components/ctf/content/Button.vue';
 
 const entry = createModel<IButtonFields, 'button', IButton>(
 	{

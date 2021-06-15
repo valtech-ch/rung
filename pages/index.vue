@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<CtfContentPage :slug="slug" />
+		<CtfLayoutContentPage :slug="slug" />
 	</div>
 </template>
 

@@ -1,15 +1,23 @@
 <template>
 	<div>
-		<nav role="navigation" class="top-nav">
-			<ul>
-				<li>
-					<NuxtLink to="/">Home</NuxtLink>
-				</li>
-			</ul>
-		</nav>
+		<CtfLayoutNavigation :id="topNavId" />
 		<Nuxt />
 	</div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+const TOP_NAV_ID = '6BnhSKYsBapBF7Jv4noQmj';
+
+export default defineComponent({
+	setup() {
+		return {
+			topNavId: TOP_NAV_ID,
+		}
+	},
+});
+</script>
 
 <style>
 @font-face {

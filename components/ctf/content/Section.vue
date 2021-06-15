@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<CtfButton v-if="type === 'button'" :entry="entry" />
-		<CtfGrid v-if="type === 'grid'" :entry="entry" />
-		<CtfImage v-if="type === 'image'" :entry="entry" />
-		<CtfLink v-if="type === 'link'" :entry="entry" />
-		<CtfLinkExternal v-if="type === 'linkExternal'" :entry="entry" />
-		<CtfTeaser v-if="type === 'teaser'" :entry="entry" />
-		<CtfText v-if="type === 'text'" :entry="entry" />
-		<CtfTitle v-if="type === 'title'" :entry="entry" />
+		<CtfContentButton v-if="type === 'button'" :entry="entry" />
+		<CtfContentGrid v-if="type === 'grid'" :entry="entry" />
+		<CtfContentImage v-if="type === 'image'" :entry="entry" />
+		<CtfContentLink v-if="type === 'link'" :entry="entry" />
+		<CtfContentLinkExternal v-if="type === 'linkExternal'" :entry="entry" />
+		<CtfContentTeaser v-if="type === 'teaser'" :entry="entry" />
+		<CtfContentText v-if="type === 'text'" :entry="entry" />
+		<CtfContentTitle v-if="type === 'title'" :entry="entry" />
 	</div>
 </template>
 

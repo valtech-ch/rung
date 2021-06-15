@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils';
 import { asset } from './helper/Asset';
 import { createModel } from './helper/TestUtils';
 import { IImage, IImageFields } from '~/types/generated/contentful';
-import CtfImage from '~/components/CtfImage.vue';
+import CtfImage from '~/components/ctf/content/Image.vue';
 
 const entry = createModel<IImageFields, 'image', IImage>(
 	{
