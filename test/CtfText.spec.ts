@@ -44,7 +44,7 @@ describe('CtfText', () => {
 
 		const anchors = wrapper.findAll('a');
 		const internal = anchors.at(0);
-		expect(internal.text()).toBe('Components');
+		expect(internal.text()).toBe('list of components');
 		expect(internal.attributes('href')).toBe('/components');
 		const external = anchors.at(1);
 		expect(external.text()).toBe('external link');

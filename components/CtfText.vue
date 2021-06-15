@@ -4,7 +4,7 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
-import { Block, INLINES, Inline } from '@contentful/rich-text-types';
+import { Block, INLINES, Inline, Text } from '@contentful/rich-text-types';
 import {
 	documentToHtmlString,
 	Options,
@@ -28,7 +28,9 @@ export default defineComponent({
 				const options: Partial<Options> = {
 					renderNode: {
 						[INLINES.ENTRY_HYPERLINK]: (node: Inline | Block) => {
-							return `<a href="/${node.data.target.fields.slug}">${node.data.target.fields.title}</a>`;
+							return `<a href="/${
+								node.data.target.fields.slug
+							}">${(node.content[0] as Text).value}</a>`;
 						},
 					},
 				};
