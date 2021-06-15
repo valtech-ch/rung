@@ -1,6 +1,6 @@
 <template>
 	<NuxtLink :to="`/${contentPage.fields.slug}`">{{
-		entry.fields.title
+		entry.fields.text
 	}}</NuxtLink>
 </template>
 <script lang="ts">
