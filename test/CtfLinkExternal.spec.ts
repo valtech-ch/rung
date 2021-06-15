@@ -23,7 +23,7 @@ describe('CtfLinkExternal', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const anchor = wrapper.find('a');
-		expect(anchor.text()).toContain('Valtech');
+		expect(anchor.text()).toBe('Valtech');
 		expect(anchor.attributes('href')).toBe('https://www.valtech.com');
 	});
 });

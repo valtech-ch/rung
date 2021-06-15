@@ -25,6 +25,6 @@ describe('CtfImage', () => {
 		const img = wrapper.find('img');
 		expect(img.attributes('src')).toBe('test.jpg');
 		expect(img.attributes('alt')).toBe('Image');
-		expect(wrapper.find('figcaption').text()).toContain('Caption');
+		expect(wrapper.find('figcaption').text()).toBe('Caption');
 	});
 });

@@ -20,6 +20,6 @@ describe('CtfContentPage', () => {
 			},
 		});
 		expect(wrapper.vm).toBeTruthy();
-		expect(wrapper.find('h1').text()).toContain('Content Page');
+		expect(wrapper.find('h1').text()).toBe('Content Page');
 	});
 });

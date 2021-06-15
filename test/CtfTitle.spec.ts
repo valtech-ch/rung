@@ -22,7 +22,7 @@ describe('CtfTitle', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const h1 = wrapper.find('h1');
-		expect(h1.text()).toContain('Title');
+		expect(h1.text()).toBe('Title');
 		expect(h1.attributes('class')).toBe('heading1');
 	});
 });

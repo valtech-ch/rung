@@ -33,7 +33,7 @@ describe('CtfButton', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const link = wrapper.findComponent(NuxtLink);
-		expect(link.text()).toContain('Button');
+		expect(link.text()).toBe('Button');
 		expect(link.attributes('class')).toContain('primary');
 		expect(link.attributes('to')).toBe('/content-page');
 	});

@@ -1,9 +1,6 @@
 <template>
-	<div class="text">
-		<strong>{{ entry.fields.title }}</strong>
-		<!-- eslint-disable-next-line vue/no-v-html -->
-		<div v-html="html"></div>
-	</div>
+	<!-- eslint-disable-next-line vue/no-v-html -->
+	<div class="text" v-html="html"></div>
 </template>
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';

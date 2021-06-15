@@ -32,7 +32,7 @@ describe('CtfLink', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const anchor = wrapper.findComponent(NuxtLink);
-		expect(anchor.text()).toContain('Link');
+		expect(anchor.text()).toBe('Link');
 		expect(anchor.attributes('to')).toBe('/content-page');
 	});
 });
