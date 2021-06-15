@@ -1,16 +1,23 @@
 import { mount } from '@vue/test-utils';
 import { ref } from '@nuxtjs/composition-api';
 import { contentPage, createModel, NuxtLinkStub } from './helper/TestUtils';
-import { ILink, ILinkFields } from '~/types/generated/contentful';
+import {
+	INavigationItem,
+	INavigationItemFields,
+} from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
-import CtfLink from '~/components/ctf/content/Link.vue';
+import CtfNavigationItem from '~/components/ctf/layout/NavigationItem.vue';
 
-const entry = createModel<ILinkFields, 'link', ILink>(
+const entry = createModel<
+	INavigationItemFields,
+	'navigationItem',
+	INavigationItem
+>(
 	{
-		link: contentPage,
-		text: 'Link',
+		page: contentPage,
+		title: 'Link',
 	},
-	'link'
+	'navigationItem'
 );
 
 jest.mock('@nuxtjs/composition-api', () => ({
@@ -18,14 +25,14 @@ jest.mock('@nuxtjs/composition-api', () => ({
 	useContext: () => ({
 		env: contentfulConfig,
 	}),
-	useAsync: () => ref(contentPage),
+	useAsync: () => ref(entry),
 }));
 
-describe('CtfLink', () => {
+describe('CtfNavigationItem', () => {
 	it('renders', () => {
-		const wrapper = mount(CtfLink, {
+		const wrapper = mount(CtfNavigationItem, {
 			propsData: {
-				entry,
+				id: '1',
 			},
 			stubs: {
 				NuxtLink: NuxtLinkStub,

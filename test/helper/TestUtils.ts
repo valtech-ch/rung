@@ -1,6 +1,4 @@
-import { createLocalVue } from '@vue/test-utils';
 import { Entry, EntryCollection } from 'contentful';
-import nuxtLinkClient from '~/.nuxt/components/nuxt-link.client';
 import { IContentPage, IContentPageFields } from '~/types/generated/contentful';
 
 export function createModel<
@@ -78,4 +76,12 @@ export const contentPages = createSingletonCollection<
 	'contentPage'
 );
 
-export const localVue = createLocalVue().component('NuxtLink', nuxtLinkClient);
+export const NuxtLinkStub = {
+	props: {
+		to: {
+			type: String,
+			required: true,
+		},
+	},
+	template: '<a :href="to"><slot /></a>',
+};

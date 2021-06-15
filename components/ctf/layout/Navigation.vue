@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful from '~/plugins/contentful';
-import { INavigation } from '~/types/generated/contentful';
+import { INavigationFields } from '~/types/generated/contentful';
 
 export default defineComponent({
 	props: {
@@ -23,7 +23,7 @@ export default defineComponent({
 	setup(props) {
 		const { client } = useContentful();
 		const navigation = useAsync(
-			() => client.getEntry<INavigation>(props.id),
+			() => client.getEntry<INavigationFields>(props.id),
 			props.id
 		);
 		return {

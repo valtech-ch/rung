@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful from '~/plugins/contentful';
-import { IContentPage, ILink } from '~/types/generated/contentful';
+import { IContentPageFields, ILink } from '~/types/generated/contentful';
 
 export default defineComponent({
 	props: {
@@ -19,7 +19,7 @@ export default defineComponent({
 		const { client } = useContentful();
 		const pageId = props.entry.fields.link.sys.id;
 		const contentPage = useAsync(
-			() => client.getEntry<IContentPage>(pageId),
+			() => client.getEntry<IContentPageFields>(pageId),
 			pageId
 		);
 		return {

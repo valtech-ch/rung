@@ -1,7 +1,6 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { ref } from '@nuxtjs/composition-api';
-import { contentPage, createModel, localVue } from './helper/TestUtils';
-import NuxtLink from '~/.nuxt/components/nuxt-link.client';
+import { contentPage, createModel, NuxtLinkStub } from './helper/TestUtils';
 import { IButton, IButtonFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
 import CtfButton from '~/components/ctf/content/Button.vue';
@@ -25,16 +24,18 @@ jest.mock('@nuxtjs/composition-api', () => ({
 
 describe('CtfButton', () => {
 	it('renders', () => {
-		const wrapper = shallowMount(CtfButton, {
+		const wrapper = mount(CtfButton, {
 			propsData: {
 				entry,
 			},
-			localVue,
+			stubs: {
+				NuxtLink: NuxtLinkStub,
+			},
 		});
 		expect(wrapper.vm).toBeTruthy();
-		const link = wrapper.findComponent(NuxtLink);
-		expect(link.text()).toBe('Button');
-		expect(link.attributes('class')).toContain('primary');
-		expect(link.attributes('to')).toBe('/content-page');
+		const anchor = wrapper.find('a');
+		expect(anchor.text()).toBe('Button');
+		expect(anchor.attributes('class')).toContain('primary');
+		expect(anchor.attributes('href')).toBe('/content-page');
 	});
 });
