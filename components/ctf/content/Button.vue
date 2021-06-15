@@ -1,5 +1,6 @@
 <template>
 	<NuxtLink
+		v-if="contentPage"
 		class="btn"
 		:class="entry.fields.variant"
 		:to="`/${contentPage.fields.slug}`"
@@ -20,8 +21,10 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const contentPage = useAsync(() =>
-			client.getEntry<IContentPage>(props.entry.fields.link.sys.id)
+		const pageId = props.entry.fields.link.sys.id;
+		const contentPage = useAsync(
+			() => client.getEntry<IContentPage>(pageId),
+			pageId
 		);
 		return {
 			contentPage,

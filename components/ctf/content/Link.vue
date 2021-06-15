@@ -1,5 +1,5 @@
 <template>
-	<NuxtLink :to="`/${contentPage.fields.slug}`">{{
+	<NuxtLink v-if="contentPage" :to="`/${contentPage.fields.slug}`">{{
 		entry.fields.text
 	}}</NuxtLink>
 </template>
@@ -17,8 +17,10 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const contentPage = useAsync(() =>
-			client.getEntry<IContentPage>(props.entry.fields.link.sys.id)
+		const pageId = props.entry.fields.link.sys.id;
+		const contentPage = useAsync(
+			() => client.getEntry<IContentPage>(pageId),
+			pageId
 		);
 		return {
 			contentPage,

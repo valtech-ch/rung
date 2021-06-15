@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="section">
 		<CtfContentButton v-if="type === 'button'" :entry="entry" />
 		<CtfContentGrid v-if="type === 'grid'" :entry="entry" />
 		<CtfContentImage v-if="type === 'image'" :entry="entry" />

@@ -22,8 +22,9 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const navigation = useAsync(() =>
-			client.getEntry<INavigation>(props.id)
+		const navigation = useAsync(
+			() => client.getEntry<INavigation>(props.id),
+			props.id
 		);
 		return {
 			navigation,

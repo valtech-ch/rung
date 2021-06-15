@@ -20,8 +20,9 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const gridItem = useAsync(() =>
-			client.getEntry<IGridItem>(props.entry.sys.id)
+		const gridItem = useAsync(
+			() => client.getEntry<IGridItem>(props.entry.sys.id),
+			props.entry.sys.id
 		);
 		const component = computed(() => {
 			if (gridItem.value) {

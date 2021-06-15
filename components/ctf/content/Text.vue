@@ -21,21 +21,22 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const text = useAsync(() => client.getEntry<IText>(props.entry.sys.id));
+		const text = useAsync(
+			() => client.getEntry<IText>(props.entry.sys.id),
+			props.entry.sys.id
+		);
 
 		const html = computed(() => {
-			if (text.value) {
-				const options: Partial<Options> = {
-					renderNode: {
-						[INLINES.ENTRY_HYPERLINK]: (node: Inline | Block) => {
-							return `<a href="/${
-								node.data.target.fields.slug
-							}">${(node.content[0] as Text).value}</a>`;
-						},
+			const options: Partial<Options> = {
+				renderNode: {
+					[INLINES.ENTRY_HYPERLINK]: (node: Inline | Block) => {
+						return `<a href="/${node.data.target.fields.slug}">${
+							(node.content[0] as Text).value
+						}</a>`;
 					},
-				};
-				return documentToHtmlString(text.value.fields.text, options);
-			}
+				},
+			};
+			return documentToHtmlString(text.value?.fields.text, options);
 		});
 		return {
 			html,

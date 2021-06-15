@@ -27,11 +27,13 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const pageResults = useAsync(() =>
-			client.getEntries<IContentPage>({
-				content_type: CTF_TYPE_ID,
-				'fields.slug': props.slug,
-			})
+		const pageResults = useAsync(
+			() =>
+				client.getEntries<IContentPage>({
+					content_type: CTF_TYPE_ID,
+					'fields.slug': props.slug,
+				}),
+			props.slug
 		);
 		const page = computed(() => {
 			if (pageResults.value && pageResults.value.total > 0) {
