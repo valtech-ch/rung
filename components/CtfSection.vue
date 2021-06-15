@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent } from '@nuxtjs/composition-api';
 import { Entry } from 'contentful';
 import {
 	IButton,
@@ -29,9 +29,8 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const type = computed(() => props.entry.sys.contentType.sys.id);
 		return {
-			type,
+			type: props.entry.sys.contentType.sys.id,
 		};
 	},
 });

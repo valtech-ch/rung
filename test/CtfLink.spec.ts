@@ -2,19 +2,17 @@ import { shallowMount } from '@vue/test-utils';
 import { ref } from '@nuxtjs/composition-api';
 import { contentPage, createModel, localVue } from './helper/TestUtils';
 import NuxtLink from '~/.nuxt/components/nuxt-link.client';
-import { IButton, IButtonFields } from '~/types/generated/contentful';
+import { ILink, ILinkFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
-import CtfButton from '~/components/CtfButton.vue';
+import CtfLink from '~/components/CtfLink.vue';
 
-const entry = createModel<IButtonFields, 'button', IButton>(
+const entry = createModel<ILinkFields, 'link', ILink>(
 	{
 		link: contentPage,
-		title: 'Button',
-		variant: 'primary',
+		title: 'Link',
 	},
-	'button'
+	'link'
 );
-
 
 jest.mock('@nuxtjs/composition-api', () => ({
 	...jest.requireActual('@nuxtjs/composition-api'),
@@ -24,9 +22,9 @@ jest.mock('@nuxtjs/composition-api', () => ({
 	useAsync: () => ref(contentPage),
 }));
 
-describe('CtfButton', () => {
+describe('CtfLink', () => {
 	it('renders', () => {
-		const wrapper = shallowMount(CtfButton, {
+		const wrapper = shallowMount(CtfLink, {
 			propsData: {
 				entry,
 			},
@@ -34,8 +32,7 @@ describe('CtfButton', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const anchor = wrapper.findComponent(NuxtLink);
-		expect(anchor.text()).toContain('Button');
-		expect(anchor.attributes('class')).toContain('primary');
+		expect(anchor.text()).toContain('Link');
 		expect(anchor.attributes('to')).toBe('/content-page');
 	});
 });

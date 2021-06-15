@@ -1,4 +1,7 @@
+import { createLocalVue } from '@vue/test-utils';
 import { Entry, EntryCollection } from 'contentful';
+import nuxtLinkClient from '~/.nuxt/components/nuxt-link.client';
+import { IContentPage, IContentPageFields } from '~/types/generated/contentful';
 
 export function createModel<
 	TFields,
@@ -48,3 +51,31 @@ export function createSingletonCollection<
 		stringifySafe: (): string => '',
 	};
 }
+
+export const contentPage = createModel<
+	IContentPageFields,
+	'contentPage',
+	IContentPage
+>(
+	{
+		sections: [],
+		slug: 'content-page',
+		title: 'Content Page',
+	},
+	'contentPage'
+);
+
+export const contentPages = createSingletonCollection<
+	IContentPageFields,
+	'contentPage',
+	IContentPage
+>(
+	{
+		sections: [],
+		slug: 'content-page',
+		title: 'Content Page',
+	},
+	'contentPage'
+);
+
+export const localVue = createLocalVue().component('NuxtLink', nuxtLinkClient);

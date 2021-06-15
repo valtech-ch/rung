@@ -155,9 +155,6 @@ export interface ILinkFields {
 
 	/** Link */
 	link: IContentPage;
-
-	/** Variant */
-	variant: 'primary' | 'secondary';
 }
 
 export interface ILink extends Entry<ILinkFields> {

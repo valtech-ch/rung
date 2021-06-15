@@ -1,22 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { ref } from '@nuxtjs/composition-api';
-import { createSingletonCollection } from './helper/TestUtils';
-import { IContentPage, IContentPageFields } from '~/types/generated/contentful';
+import { contentPages } from './helper/TestUtils';
 import contentfulConfig from '~/.contentful.json';
 import CtfContentPage from '~/components/CtfContentPage.vue';
-
-const contentPages = createSingletonCollection<
-	IContentPageFields,
-	'contentPage',
-	IContentPage
->(
-	{
-		sections: [],
-		slug: 'content-page',
-		title: 'Content Page',
-	},
-	'contentPage'
-);
 
 jest.mock('@nuxtjs/composition-api', () => ({
 	...jest.requireActual('@nuxtjs/composition-api'),

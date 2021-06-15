@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"@contentful/rich-text-html-renderer": "^14.1.2",
+		"@contentful/rich-text-links": "^14.1.2",
 		"@nuxtjs/axios": "^5.13.1",
 		"@nuxtjs/composition-api": "^0.24.4",
 		"contentful": "^8.3.7",
