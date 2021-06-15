@@ -9,7 +9,7 @@
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful from '~/plugins/contentful';
-import { IGridItem } from '~/types/generated/contentful';
+import { IGridItem, IGridItemFields } from '~/types/generated/contentful';
 
 export default defineComponent({
 	props: {
@@ -21,7 +21,7 @@ export default defineComponent({
 	setup(props) {
 		const { client } = useContentful();
 		const gridItem = useAsync(
-			() => client.getEntry<IGridItem>(props.entry.sys.id),
+			() => client.getEntry<IGridItemFields>(props.entry.sys.id),
 			props.entry.sys.id
 		);
 		const component = computed(() => {

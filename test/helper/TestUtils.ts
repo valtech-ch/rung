@@ -39,12 +39,12 @@ export function createSingletonCollection<
 	TId extends string,
 	TModel extends Entry<TFields>
 >(fields: TFields, typeId: TId): EntryCollection<TModel> {
-	const contentPage = createModel<TFields, TId, TModel>(fields, typeId);
+	const item = createModel<TFields, TId, TModel>(fields, typeId);
 	return {
 		total: 1,
 		skip: 0,
 		limit: 0,
-		items: [contentPage as unknown as Entry<TModel>],
+		items: [item as unknown as Entry<TModel>],
 		toPlainObject: (): object => {
 			return {};
 		},

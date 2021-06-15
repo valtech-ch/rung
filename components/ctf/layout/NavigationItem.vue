@@ -1,6 +1,6 @@
 <template>
-	<div v-if="navItem">
-		<NuxtLink :to="navItem.fields.page.fields.slug">{{
+	<div v-if="navItem" class="navItem">
+		<NuxtLink :to="`/${navItem.fields.page.fields.slug}`">{{
 			navItem.fields.title
 		}}</NuxtLink>
 		<ul v-if="navItem.fields.children">
@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful from '~/plugins/contentful';
-import { INavigationItem } from '~/types/generated/contentful';
+import { INavigationItemFields } from '~/types/generated/contentful';
 
 export default defineComponent({
 	props: {
@@ -26,7 +26,7 @@ export default defineComponent({
 	setup(props) {
 		const { client } = useContentful();
 		const navItem = useAsync(
-			() => client.getEntry<INavigationItem>(props.id),
+			() => client.getEntry<INavigationItemFields>(props.id),
 			props.id
 		);
 		return {
