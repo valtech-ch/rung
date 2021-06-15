@@ -31,6 +31,31 @@ export interface IButton extends Entry<IButtonFields> {
 	};
 }
 
+export interface ICarouselFields {
+	/** Title */
+	title?: string | undefined;
+
+	/** Items */
+	items?: (IImage | ITeaser)[] | undefined;
+}
+
+export interface ICarousel extends Entry<ICarouselFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'carousel';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
 export interface IConfigFields {
 	/** Title */
 	title: 'Config';
@@ -64,7 +89,17 @@ export interface IContentPageFields {
 	slug: string;
 
 	/** Sections */
-	sections: (IButton | IGrid | ITeaser | IText | ITitle)[];
+	sections: (
+		| IButton
+		| ICarousel
+		| IGrid
+		| IImage
+		| ILink
+		| ILinkExternal
+		| ITeaser
+		| IText
+		| ITitle
+	)[];
 }
 
 export interface IContentPage extends Entry<IContentPageFields> {
@@ -117,7 +152,14 @@ export interface IGridItemFields {
 	title: string;
 
 	/** component */
-	component: IButton | ITeaser | ITitle;
+	component:
+		| IButton
+		| IImage
+		| ILink
+		| ILinkExternal
+		| ITeaser
+		| IText
+		| ITitle;
 
 	/** xs */
 	xs?: number | undefined;
@@ -130,6 +172,9 @@ export interface IGridItemFields {
 
 	/** lg */
 	lg?: number | undefined;
+
+	/** xl */
+	xl?: number | undefined;
 }
 
 export interface IGridItem extends Entry<IGridItemFields> {
@@ -149,9 +194,37 @@ export interface IGridItem extends Entry<IGridItemFields> {
 	};
 }
 
+export interface IImageFields {
+	/** Image */
+	image: Asset;
+
+	/** Alt */
+	alt: string;
+
+	/** Caption */
+	caption?: string | undefined;
+}
+
+export interface IImage extends Entry<IImageFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'image';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
 export interface ILinkFields {
-	/** Title */
-	title: string;
+	/** Text */
+	text: string;
 
 	/** Link */
 	link: IContentPage;
@@ -167,6 +240,84 @@ export interface ILink extends Entry<ILinkFields> {
 		contentType: {
 			sys: {
 				id: 'link';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface ILinkExternalFields {
+	/** Text */
+	text: string;
+
+	/** href */
+	href: string;
+}
+
+export interface ILinkExternal extends Entry<ILinkExternalFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'linkExternal';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface INavigationFields {
+	/** Title */
+	title: string;
+
+	/** items */
+	items: INavigationItem[];
+}
+
+export interface INavigation extends Entry<INavigationFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'navigation';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
+export interface INavigationItemFields {
+	/** Title */
+	title: string;
+
+	/** page */
+	page: IContentPage;
+
+	/** children */
+	children?: INavigationItem[] | undefined;
+}
+
+export interface INavigationItem extends Entry<INavigationItemFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'navigationItem';
 				linkType: 'ContentType';
 				type: 'Link';
 			};
@@ -255,6 +406,7 @@ export interface ITitleFields {
 		| 'h6'
 		| 'p'
 		| 'span'
+		| 'strong'
 		| undefined;
 }
 
@@ -277,11 +429,16 @@ export interface ITitle extends Entry<ITitleFields> {
 
 export type CONTENT_TYPE =
 	| 'button'
+	| 'carousel'
 	| 'config'
 	| 'contentPage'
 	| 'grid'
 	| 'gridItem'
+	| 'image'
 	| 'link'
+	| 'linkExternal'
+	| 'navigation'
+	| 'navigationItem'
 	| 'teaser'
 	| 'text'
 	| 'title';

@@ -1,6 +1,7 @@
 <template>
 	<div class="gridItem">
 		<CtfButton v-if="type === 'button'" :entry="component" />
+		<CtfImage v-if="type === 'image'" :entry="component" />
 		<CtfTeaser v-if="type === 'teaser'" :entry="component" />
 		<CtfTitle v-if="type === 'title'" :entry="component" />
 	</div>

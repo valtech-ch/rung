@@ -15,7 +15,6 @@ const entry = createModel<IButtonFields, 'button', IButton>(
 	'button'
 );
 
-
 jest.mock('@nuxtjs/composition-api', () => ({
 	...jest.requireActual('@nuxtjs/composition-api'),
 	useContext: () => ({
@@ -33,9 +32,9 @@ describe('CtfButton', () => {
 			localVue,
 		});
 		expect(wrapper.vm).toBeTruthy();
-		const anchor = wrapper.findComponent(NuxtLink);
-		expect(anchor.text()).toContain('Button');
-		expect(anchor.attributes('class')).toContain('primary');
-		expect(anchor.attributes('to')).toBe('/content-page');
+		const link = wrapper.findComponent(NuxtLink);
+		expect(link.text()).toContain('Button');
+		expect(link.attributes('class')).toContain('primary');
+		expect(link.attributes('to')).toBe('/content-page');
 	});
 });

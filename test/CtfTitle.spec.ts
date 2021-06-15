@@ -21,7 +21,8 @@ describe('CtfTitle', () => {
 			},
 		});
 		expect(wrapper.vm).toBeTruthy();
-		expect(wrapper.find('h1').text()).toContain('Title');
-		expect(wrapper.find('h1').attributes('class')).toBe('heading1');
+		const h1 = wrapper.find('h1');
+		expect(h1.text()).toContain('Title');
+		expect(h1.attributes('class')).toBe('heading1');
 	});
 });
