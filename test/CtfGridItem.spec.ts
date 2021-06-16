@@ -55,6 +55,9 @@ describe('CtfGridItem', () => {
 			propsData: {
 				entry,
 			},
+			stubs: {
+				CtfContentText: true,
+			},
 		});
 		expect(wrapper.vm).toBeTruthy();
 		expect(wrapper.find('div').attributes('class')).toBe(
@@ -65,6 +68,9 @@ describe('CtfGridItem', () => {
 		const wrapper = mount(CtfGridItem, {
 			propsData: {
 				entry: entryNoBreakpoints,
+			},
+			stubs: {
+				CtfContentText: true,
 			},
 		});
 		expect(wrapper.vm).toBeTruthy();

@@ -4,7 +4,7 @@ import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 export interface IButtonFields {
-	/** Title */
+	/** Titlee */
 	title: string;
 
 	/** Link */
@@ -36,7 +36,7 @@ export interface ICarouselFields {
 	title?: string | undefined;
 
 	/** Items */
-	items?: (IImage | ITeaser)[] | undefined;
+	items: (IImage | ITeaser)[];
 }
 
 export interface ICarousel extends Entry<ICarouselFields> {
@@ -337,6 +337,9 @@ export interface ITeaserFields {
 
 	/** Image */
 	image?: Asset | undefined;
+
+	/** Link */
+	link: IContentPage;
 }
 
 export interface ITeaser extends Entry<ITeaserFields> {

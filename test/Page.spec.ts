@@ -17,12 +17,20 @@ jest.mock('@nuxtjs/composition-api', () => ({
 
 describe('Page components', () => {
 	it('renders home', () => {
-		const wrapper = mount(Homepage);
+		const wrapper = mount(Homepage, {
+			stubs: {
+				CtfLayoutContentPage: true,
+			},
+		});
 		expect(wrapper.vm).toBeTruthy();
 		expect(wrapper.find('div').attributes('class')).toBe('container');
 	});
 	it('renders slug', () => {
-		const wrapper = mount(Slug);
+		const wrapper = mount(Slug, {
+			stubs: {
+				CtfLayoutContentPage: true,
+			},
+		});
 		expect(wrapper.vm).toBeTruthy();
 		expect(wrapper.find('div').attributes('class')).toBe('container');
 	});
