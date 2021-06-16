@@ -1,12 +1,49 @@
 <template>
 	<div class="wrapper">
 		<h1>{{ title }}</h1>
-		<div class="content">
-			<CtfContentSection
-				v-for="section in sections"
-				:key="section.sys.id"
-				:entry="section"
-			/>
+		<div v-if="sections" class="content">
+			<template v-for="section in sections">
+				<CtfContentButton
+					v-if="section.sys.contentType.sys.id === 'button'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentGrid
+					v-if="section.sys.contentType.sys.id === 'grid'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentImage
+					v-if="section.sys.contentType.sys.id === 'image'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentLink
+					v-if="section.sys.contentType.sys.id === 'link'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentLinkExternal
+					v-if="section.sys.contentType.sys.id === 'linkExternal'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentTeaser
+					v-if="section.sys.contentType.sys.id === 'teaser'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentText
+					v-if="section.sys.contentType.sys.id === 'text'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+				<CtfContentTitle
+					v-if="section.sys.contentType.sys.id === 'title'"
+					:key="section.sys.id"
+					:entry="section"
+				/>
+			</template>
 		</div>
 	</div>
 </template>
