@@ -4,9 +4,86 @@ import {
 	CreateClientParams,
 	createClient,
 } from 'contentful';
+import {
+	IButton,
+	ICarousel,
+	IGrid,
+	IImage,
+	ILink,
+	ILinkExternal,
+	ITeaser,
+	IText,
+	ITitle,
+} from '~/types/generated/contentful';
 
 export interface UseContentfulType {
 	client: ContentfulClientApi;
+}
+
+export interface CtfComponent {
+	component: string;
+	props: {
+		entry:
+			| IButton
+			| ICarousel
+			| IGrid
+			| IImage
+			| ILink
+			| ILinkExternal
+			| ITeaser
+			| IText
+			| ITitle;
+	};
+	id: string;
+}
+
+export function getComponentByType(
+	entry:
+		| IButton
+		| ICarousel
+		| IGrid
+		| IImage
+		| ILink
+		| ILinkExternal
+		| ITeaser
+		| IText
+		| ITitle
+): CtfComponent {
+	let component = 'div';
+	switch (entry.sys.contentType.sys.id) {
+		case 'button':
+			component = 'CtfContentButton';
+			break;
+		case 'carousel':
+			component = 'CtfContentCarousel';
+			break;
+		case 'grid':
+			component = 'CtfContentGrid';
+			break;
+		case 'image':
+			component = 'CtfContentImage';
+			break;
+		case 'link':
+			component = 'CtfContentLink';
+			break;
+		case 'linkExternal':
+			component = 'CtfContentLinkExternal';
+			break;
+		case 'teaser':
+			component = 'CtfContentTeaser';
+			break;
+		case 'text':
+			component = 'CtfContentText';
+			break;
+		case 'title':
+			component = 'CtfContentTitle';
+			break;
+	}
+	return {
+		component,
+		props: { entry },
+		id: entry.sys.id,
+	};
 }
 
 export default function useContentful(): UseContentfulType {

@@ -1,14 +1,11 @@
 <template>
-	<div class="gridItem" :class="breakpoints">
-		<CtfContentButton v-if="type === 'button'" :entry="component" />
-		<CtfContentImage v-if="type === 'image'" :entry="component" />
-		<CtfContentTeaser v-if="type === 'teaser'" :entry="component" />
-		<CtfContentTitle v-if="type === 'title'" :entry="component" />
+	<div v-if="item" class="gridItem" :class="breakpoints">
+		<component :is="item.component" v-bind="item.props" />
 	</div>
 </template>
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
-import useContentful from '~/plugins/contentful';
+import useContentful, { getComponentByType } from '~/plugins/contentful';
 import { IGridItem, IGridItemFields } from '~/types/generated/contentful';
 
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -18,7 +15,7 @@ function addBreakpointClass(
 	fields: IGridItemFields,
 	property: Breakpoint
 ): void {
-	if (fields[property]) {
+	if (fields && fields[property]) {
 		classList.push(`${property}-${fields[property]}`);
 	}
 }
@@ -47,16 +44,14 @@ export default defineComponent({
 			}
 			return classList.join(' ');
 		});
-		const component = computed(() => {
-			return gridItem.value?.fields.component;
-		});
-		const type = computed(() => {
-			return component.value?.sys.contentType.sys.id;
+		const item = computed(() => {
+			if (gridItem.value) {
+				return getComponentByType(gridItem.value.fields.component);
+			}
 		});
 		return {
 			breakpoints,
-			component,
-			type,
+			item,
 		};
 	},
 });

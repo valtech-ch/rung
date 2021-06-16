@@ -3,45 +3,10 @@
 		<h1>{{ title }}</h1>
 		<div v-if="sections" class="content">
 			<template v-for="section in sections">
-				<CtfContentButton
-					v-if="section.sys.contentType.sys.id === 'button'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentGrid
-					v-if="section.sys.contentType.sys.id === 'grid'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentImage
-					v-if="section.sys.contentType.sys.id === 'image'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentLink
-					v-if="section.sys.contentType.sys.id === 'link'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentLinkExternal
-					v-if="section.sys.contentType.sys.id === 'linkExternal'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentTeaser
-					v-if="section.sys.contentType.sys.id === 'teaser'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentText
-					v-if="section.sys.contentType.sys.id === 'text'"
-					:key="section.sys.id"
-					:entry="section"
-				/>
-				<CtfContentTitle
-					v-if="section.sys.contentType.sys.id === 'title'"
-					:key="section.sys.id"
-					:entry="section"
+				<component
+					:is="section.component"
+					:key="section.id"
+					v-bind="section.props"
 				/>
 			</template>
 		</div>
@@ -50,7 +15,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
-import useContentful from '~/plugins/contentful';
+import useContentful, { getComponentByType } from '~/plugins/contentful';
 import { IContentPageFields } from '~/types/generated/contentful';
 
 const CTF_TYPE_ID = 'contentPage';
@@ -78,9 +43,9 @@ export default defineComponent({
 		const title = computed(() => {
 			return page.value?.fields.title;
 		});
-		const sections = computed(() => {
-			return page.value?.fields.sections;
-		});
+		const sections = computed(() =>
+			page.value?.fields.sections.map(getComponentByType)
+		);
 		return {
 			title,
 			sections,
