@@ -7,7 +7,7 @@ import CtfLink from '~/components/ctf/content/Link.vue';
 
 const entry = createModel<ILinkFields, 'link', ILink>(
 	{
-		link: contentPage,
+		contentPage,
 		text: 'Link',
 	},
 	'link'

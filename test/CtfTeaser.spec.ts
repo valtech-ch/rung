@@ -11,7 +11,7 @@ const entry = createModel<ITeaserFields, 'teaser', ITeaser>(
 	{
 		description: 'Description',
 		image: asset,
-		link: contentPage,
+		contentPage,
 		pretitle: 'Pretitle',
 		title: 'Title',
 	},

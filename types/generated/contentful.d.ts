@@ -190,8 +190,8 @@ export interface ILinkFields {
 	/** Text */
 	text: string;
 
-	/** Link */
-	link: IContentPage;
+	/** ContentPage */
+	contentPage: IContentPage;
 }
 
 export interface ILink extends Entry<ILinkFields> {
@@ -265,11 +265,11 @@ export interface INavigationItemFields {
 	/** Title */
 	title: string;
 
-	/** children */
-	children?: INavigationItem[] | undefined;
-
-	/** contentPage */
+	/** Content Page */
 	contentPage: IContentPage;
+
+	/** Children */
+	children?: INavigationItem[] | undefined;
 }
 
 export interface INavigationItem extends Entry<INavigationItemFields> {
@@ -302,8 +302,8 @@ export interface ITeaserFields {
 	/** Image */
 	image?: Asset | undefined;
 
-	/** Link */
-	link: IContentPage;
+	/** Content Page */
+	contentPage: IContentPage;
 }
 
 export interface ITeaser extends Entry<ITeaserFields> {

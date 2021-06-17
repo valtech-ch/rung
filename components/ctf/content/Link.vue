@@ -17,7 +17,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const { client } = useContentful();
-		const pageId = props.entry.fields.link.sys.id;
+		const pageId = props.entry.fields.contentPage.sys.id;
 		const contentPage = useAsync(
 			() => client.getEntry<IContentPageFields>(pageId),
 			pageId
