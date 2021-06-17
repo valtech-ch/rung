@@ -90,6 +90,31 @@ export interface IContentPage extends Entry<IContentPageFields> {
 	};
 }
 
+export interface IDownloadFields {
+	/** Text */
+	text: string;
+
+	/** File */
+	file: Asset;
+}
+
+export interface IDownload extends Entry<IDownloadFields> {
+	sys: {
+		id: string;
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		locale: string;
+		contentType: {
+			sys: {
+				id: 'download';
+				linkType: 'ContentType';
+				type: 'Link';
+			};
+		};
+	};
+}
+
 export interface IGridFields {
 	/** Title */
 	title: string;
@@ -398,6 +423,7 @@ export type CONTENT_TYPE =
 	| 'carousel'
 	| 'config'
 	| 'contentPage'
+	| 'download'
 	| 'grid'
 	| 'gridItem'
 	| 'image'

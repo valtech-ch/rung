@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { ref } from '@nuxtjs/composition-api';
 
-import { asset } from './helper/Asset';
+import { jpeg } from './helper/Asset';
 import { contentPage, createModel, NuxtLinkStub } from './helper/TestUtils';
 import { ITeaser, ITeaserFields } from '~/types/generated/contentful';
 import contentfulConfig from '~/.contentful.json';
@@ -10,7 +10,7 @@ import CtfTeaser from '~/components/ctf/content/Teaser.vue';
 const entry = createModel<ITeaserFields, 'teaser', ITeaser>(
 	{
 		description: 'Description',
-		image: asset,
+		image: jpeg,
 		contentPage,
 		pretitle: 'Pretitle',
 		title: 'Title',
