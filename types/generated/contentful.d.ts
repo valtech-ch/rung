@@ -3,34 +3,6 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
-export interface IButtonFields {
-	/** Titlee */
-	title: string;
-
-	/** Link */
-	link: IContentPage;
-
-	/** Variant */
-	variant: 'primary' | 'secondary';
-}
-
-export interface IButton extends Entry<IButtonFields> {
-	sys: {
-		id: string;
-		type: string;
-		createdAt: string;
-		updatedAt: string;
-		locale: string;
-		contentType: {
-			sys: {
-				id: 'button';
-				linkType: 'ContentType';
-				type: 'Link';
-			};
-		};
-	};
-}
-
 export interface ICarouselFields {
 	/** Title */
 	title?: string | undefined;
@@ -90,7 +62,6 @@ export interface IContentPageFields {
 
 	/** Sections */
 	sections: (
-		| IButton
 		| ICarousel
 		| IGrid
 		| IImage
@@ -126,7 +97,7 @@ export interface IGridFields {
 	/** Items */
 	items: IGridItem[];
 
-	/** spacing */
+	/** Spacing */
 	spacing?: number | undefined;
 }
 
@@ -151,15 +122,8 @@ export interface IGridItemFields {
 	/** Title */
 	title: string;
 
-	/** component */
-	component:
-		| IButton
-		| IImage
-		| ILink
-		| ILinkExternal
-		| ITeaser
-		| IText
-		| ITitle;
+	/** Component */
+	component: IImage | ILink | ILinkExternal | ITeaser | IText | ITitle;
 
 	/** xs */
 	xs?: number | undefined;
@@ -276,7 +240,7 @@ export interface INavigationFields {
 	/** Title */
 	title: string;
 
-	/** items */
+	/** Items */
 	items: INavigationItem[];
 }
 
@@ -301,11 +265,11 @@ export interface INavigationItemFields {
 	/** Title */
 	title: string;
 
-	/** page */
-	page: IContentPage;
-
 	/** children */
 	children?: INavigationItem[] | undefined;
+
+	/** contentPage */
+	contentPage: IContentPage;
 }
 
 export interface INavigationItem extends Entry<INavigationItemFields> {
@@ -431,7 +395,6 @@ export interface ITitle extends Entry<ITitleFields> {
 }
 
 export type CONTENT_TYPE =
-	| 'button'
 	| 'carousel'
 	| 'config'
 	| 'contentPage'

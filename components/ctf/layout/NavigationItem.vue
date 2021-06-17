@@ -1,6 +1,6 @@
 <template>
 	<div v-if="navItem" class="navItem">
-		<NuxtLink :to="`/${navItem.fields.page.fields.slug}`">{{
+		<NuxtLink :to="`/${navItem.fields.contentPage.fields.slug}`">{{
 			navItem.fields.title
 		}}</NuxtLink>
 		<ul v-if="navItem.fields.children">

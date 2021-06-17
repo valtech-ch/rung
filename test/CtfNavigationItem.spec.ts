@@ -14,7 +14,7 @@ const entry = createModel<
 	INavigationItem
 >(
 	{
-		page: contentPage,
+		contentPage,
 		title: 'Link',
 	},
 	'navigationItem'
