@@ -23,15 +23,16 @@ describe('Page components', () => {
 			},
 		});
 		expect(wrapper.vm).toBeTruthy();
-		expect(wrapper.find('div').attributes('class')).toBe('container');
+		expect(wrapper.find('main').exists()).toBeTruthy();
 	});
 	it('renders slug', () => {
 		const wrapper = mount(Slug, {
 			stubs: {
 				CtfLayoutContentPage: true,
+				CtfLayoutNavigation: true,
 			},
 		});
 		expect(wrapper.vm).toBeTruthy();
-		expect(wrapper.find('div').attributes('class')).toBe('container');
+		expect(wrapper.find('main').exists()).toBeTruthy();
 	});
 });

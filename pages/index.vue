@@ -1,7 +1,7 @@
 <template>
-	<div class="container">
+	<main>
 		<CtfLayoutContentPage :slug="slug" />
-	</div>
+	</main>
 </template>
 
 <script lang="ts">

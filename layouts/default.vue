@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<CtfLayoutNavigation :id="topNavId" />
+		<CtfLayoutNavigation :id="topNavId" class="top-nav" />
 		<Nuxt />
 	</div>
 </template>
@@ -14,7 +14,7 @@ export default defineComponent({
 	setup() {
 		return {
 			topNavId: TOP_NAV_ID,
-		}
+		};
 	},
 });
 </script>
@@ -64,17 +64,32 @@ a {
 	align-items: center;
 	margin: 0 1em;
 }
+.left-nav {
+	margin: 5em 0 0 1em;
+	background: #efefef;
+}
+.left-nav ul {
+	padding-left: 1em;
+}
+.left-nav li {
+	list-style: none;
+}
+.left-nav li a {
+	text-decoration: none;
+}
 
 /* Content */
-.container {
+main {
+	background: #fff;
 	max-width: 1180px;
 	margin: 0px auto;
-	background: #fff;
+	padding: 2vmin 0 5vmin;
+	display: grid;
+	grid-template-columns: 200px 1fr;
 }
 
 .wrapper {
 	width: calc(100% - 10vmin);
 	margin: 0 auto;
-	padding: 5vmin 0;
 }
 </style>
