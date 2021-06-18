@@ -23,7 +23,11 @@ describe('CtfImage', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const img = wrapper.find('img');
-		expect(img.attributes('src')).toBe('test.jpg');
+		expect(img.attributes('src')).toBe('test.jpg?w=900');
+		expect(img.attributes('srcset')).toBe(
+			'test.jpg?w=300 300w,test.jpg?w=600 600w,test.jpg?w=900 900w'
+		);
+		expect(img.attributes('sizes')).toBe('100vw');
 		expect(img.attributes('alt')).toBe('Image');
 		expect(wrapper.find('figcaption').text()).toBe('Caption');
 	});

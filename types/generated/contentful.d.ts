@@ -324,11 +324,14 @@ export interface ITeaserFields {
 	/** Description */
 	description?: string | undefined;
 
+	/** Content Page */
+	contentPage: IContentPage;
+
 	/** Image */
 	image?: Asset | undefined;
 
-	/** Content Page */
-	contentPage: IContentPage;
+	/** ImagePosition */
+	imagePosition?: 'top' | 'right' | 'bottom' | 'left' | undefined;
 }
 
 export interface ITeaser extends Entry<ITeaserFields> {

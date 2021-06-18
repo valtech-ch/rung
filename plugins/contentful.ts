@@ -5,8 +5,8 @@ import {
 	createClient,
 } from 'contentful';
 import {
-	IButton,
 	ICarousel,
+	IDownload,
 	IGrid,
 	IImage,
 	ILink,
@@ -24,8 +24,8 @@ export interface CtfComponent {
 	component: string;
 	props: {
 		entry:
-			| IButton
 			| ICarousel
+			| IDownload
 			| IGrid
 			| IImage
 			| ILink
@@ -39,8 +39,8 @@ export interface CtfComponent {
 
 export function getComponentByType(
 	entry:
-		| IButton
 		| ICarousel
+		| IDownload
 		| IGrid
 		| IImage
 		| ILink
@@ -51,11 +51,11 @@ export function getComponentByType(
 ): CtfComponent {
 	let component = 'div';
 	switch (entry.sys.contentType.sys.id) {
-		case 'button':
-			component = 'CtfContentButton';
-			break;
 		case 'carousel':
 			component = 'CtfContentCarousel';
+			break;
+		case 'download':
+			component = 'CtfContentDownload';
 			break;
 		case 'grid':
 			component = 'CtfContentGrid';
