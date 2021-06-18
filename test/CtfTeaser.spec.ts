@@ -81,7 +81,7 @@ describe('CtfTeaser', () => {
 		expect(img.attributes('srcset')).toBe(
 			'test.jpg?w=100 100w,test.jpg?w=200 200w,test.jpg?w=300 300w'
 		);
-		expect(img.attributes('sizes')).toBe('50vw');
+		expect(img.attributes('sizes')).toBe('20vw');
 	});
 	it('renders no image', () => {
 		const wrapper = mount(CtfTeaser, {
