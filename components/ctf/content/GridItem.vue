@@ -16,7 +16,7 @@ function addBreakpointClass(
 	property: Breakpoint
 ): void {
 	if (fields && fields[property]) {
-		classList.push(`${property}-${fields[property]}`);
+		classList.push(`col-${property}-${fields[property]}`);
 	}
 }
 
@@ -35,12 +35,11 @@ export default defineComponent({
 		);
 		const breakpoints = computed(() => {
 			const classList: string[] = [];
-			for (const bp of ['xs', 'sm', 'md', 'lg', 'xl']) {
-				addBreakpointClass(
-					classList,
-					props.entry.fields,
-					bp as Breakpoint
-				);
+			if (gridItem.value) {
+				const fields = gridItem.value.fields;
+				for (const bp of ['xs', 'sm', 'md', 'lg', 'xl']) {
+					addBreakpointClass(classList, fields, bp as Breakpoint);
+				}
 			}
 			return classList.join(' ');
 		});

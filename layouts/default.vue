@@ -84,6 +84,8 @@ main {
 	max-width: 1180px;
 	margin: 0px auto;
 	padding: 2vmin 0 5vmin;
+}
+main.slug {
 	display: grid;
 	grid-template-columns: 200px 1fr;
 }

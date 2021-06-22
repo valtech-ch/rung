@@ -1,5 +1,5 @@
 <template>
-	<main>
+	<main class="slug">
 		<CtfLayoutNavigation :id="leftNavId" class="left-nav" />
 		<CtfLayoutContentPage :slug="slug" />
 	</main>

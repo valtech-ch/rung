@@ -148,7 +148,14 @@ export interface IGridItemFields {
 	title: string;
 
 	/** Component */
-	component: IImage | ILink | ILinkExternal | ITeaser | IText | ITitle;
+	component:
+		| IDownload
+		| IImage
+		| ILink
+		| ILinkExternal
+		| ITeaser
+		| IText
+		| ITitle;
 
 	/** xs */
 	xs?: number | undefined;
