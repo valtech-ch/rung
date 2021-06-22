@@ -33,14 +33,6 @@ const entry = createModel<IGridItemFields, 'grid', IGridItem>(
 	'grid'
 );
 
-const entryNoBreakpoints = createModel<IGridItemFields, 'grid', IGridItem>(
-	{
-		title: 'GridItem',
-		component: title,
-	},
-	'grid'
-);
-
 jest.mock('@nuxtjs/composition-api', () => ({
 	...jest.requireActual('@nuxtjs/composition-api'),
 	useContext: () => ({
@@ -61,19 +53,7 @@ describe('CtfGridItem', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		expect(wrapper.find('div').attributes('class')).toBe(
-			'gridItem xs-1 sm-2 md-3 lg-5 xl-7'
+			'gridItem col-xs-1 col-sm-2 col-md-3 col-lg-5 col-xl-7'
 		);
-	});
-	it('renders without breakpoints', () => {
-		const wrapper = mount(CtfGridItem, {
-			propsData: {
-				entry: entryNoBreakpoints,
-			},
-			stubs: {
-				CtfContentText: true,
-			},
-		});
-		expect(wrapper.vm).toBeTruthy();
-		expect(wrapper.find('div').attributes('class')).toBe('gridItem');
 	});
 });

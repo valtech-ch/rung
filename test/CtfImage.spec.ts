@@ -23,11 +23,13 @@ describe('CtfImage', () => {
 		});
 		expect(wrapper.vm).toBeTruthy();
 		const img = wrapper.find('img');
-		expect(img.attributes('src')).toBe('test.jpg?w=900');
+		expect(img.attributes('src')).toBe('test.jpg?w=1200');
 		expect(img.attributes('srcset')).toBe(
-			'test.jpg?w=300 300w,test.jpg?w=600 600w,test.jpg?w=900 900w'
+			'test.jpg?w=544 544w,test.jpg?w=768 768w,test.jpg?w=992 992w,test.jpg?w=1200 1200w,test.jpg?w=1200 1200w'
 		);
-		expect(img.attributes('sizes')).toBe('100vw');
+		expect(img.attributes('sizes')).toBe(
+			'(max-width: 544px) 544px,(max-width: 768px) 768px,(max-width: 992px) 992px,(max-width: 1200px) 1200px, 1200px'
+		);
 		expect(img.attributes('alt')).toBe('Image');
 		expect(wrapper.find('figcaption').text()).toBe('Caption');
 	});

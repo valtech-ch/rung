@@ -68,9 +68,12 @@ export interface UseImageType {
 
 export default function useImage(image: Asset, alt?: string): UseImageType {
 	const url = image.fields.file.url;
-	const src = `${url}?w=${MAX_WIDTH}`;
 
 	const getAttributes = (columns?: GridSizes, isOnSide = false) => {
+		let src = `${url}?w=${MAX_WIDTH}`;
+		if (isOnSide) {
+			src = `${url}?w=${MAX_WIDTH / 3}`;
+		}
 		const sizes: string[] = [];
 		const widths: number[] = [];
 		for (const bp of ['xs', 'sm', 'md', 'lg', 'xl']) {
