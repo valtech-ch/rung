@@ -5,10 +5,12 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
-import useContentful, { getComponentByType } from '~/plugins/contentful';
+import useContentful, {
+	Breakpoint,
+	getComponentByType,
+} from '~/plugins/contentful';
+import { GridSizes } from '~/plugins/image';
 import { IGridItem, IGridItemFields } from '~/types/generated/contentful';
-
-type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 function addBreakpointClass(
 	classList: string[],
@@ -45,7 +47,10 @@ export default defineComponent({
 		});
 		const item = computed(() => {
 			if (gridItem.value) {
-				return getComponentByType(gridItem.value.fields.component);
+				return getComponentByType(
+					gridItem.value.fields.component,
+					gridItem.value.fields as GridSizes
+				);
 			}
 		});
 		return {

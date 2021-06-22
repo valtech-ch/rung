@@ -81,7 +81,7 @@ a {
 /* Content */
 main {
 	background: #fff;
-	max-width: 1180px;
+	max-width: 1200px;
 	margin: 0px auto;
 	padding: 2vmin 0 5vmin;
 }

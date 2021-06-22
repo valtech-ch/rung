@@ -44,7 +44,9 @@ export default defineComponent({
 			return page.value?.fields.title;
 		});
 		const sections = computed(() =>
-			page.value?.fields.sections.map(getComponentByType)
+			page.value?.fields.sections.map((section) =>
+				getComponentByType(section)
+			)
 		);
 		return {
 			title,

@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import useImage from '~/plugins/image';
+import useImage, { GridSizes } from '~/plugins/image';
 import { IImage } from '~/types/generated/contentful';
 
 export default defineComponent({
@@ -17,14 +17,17 @@ export default defineComponent({
 			type: Object as () => IImage,
 			required: true,
 		},
+		gridSizes: {
+			type: Object as () => GridSizes,
+			default: undefined,
+		},
 	},
 	setup(props) {
-		const image = useImage(
+		const { getAttributes } = useImage(
 			props.entry.fields.image,
-			'100vw',
-			[300, 600, 900],
 			props.entry.fields.alt
 		);
+		const image = getAttributes(props.gridSizes);
 		return {
 			image,
 		};

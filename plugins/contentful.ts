@@ -4,6 +4,7 @@ import {
 	CreateClientParams,
 	createClient,
 } from 'contentful';
+import { GridSizes } from './image';
 import {
 	ICarousel,
 	IDownload,
@@ -33,6 +34,7 @@ export interface CtfComponent {
 			| ITeaser
 			| IText
 			| ITitle;
+		gridSizes?: GridSizes;
 	};
 	id: string;
 }
@@ -47,7 +49,8 @@ export function getComponentByType(
 		| ILinkExternal
 		| ITeaser
 		| IText
-		| ITitle
+		| ITitle,
+	gridSizes?: GridSizes
 ): CtfComponent {
 	let component = 'div';
 	switch (entry.sys.contentType.sys.id) {
@@ -81,10 +84,12 @@ export function getComponentByType(
 	}
 	return {
 		component,
-		props: { entry },
+		props: { entry, gridSizes },
 		id: entry.sys.id,
 	};
 }
+
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export default function useContentful(): UseContentfulType {
 	const { env } = useContext();

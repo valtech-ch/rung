@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful from '~/plugins/contentful';
-import useImage from '~/plugins/image';
+import useImage, { GridSizes, ImageAttributes } from '~/plugins/image';
 import { IContentPageFields, ITeaser } from '~/types/generated/contentful';
 
 export default defineComponent({
@@ -30,6 +30,10 @@ export default defineComponent({
 		entry: {
 			type: Object as () => ITeaser,
 			required: true,
+		},
+		gridSizes: {
+			type: Object as () => GridSizes,
+			default: undefined,
 		},
 	},
 	setup(props) {
@@ -40,18 +44,12 @@ export default defineComponent({
 			pageId
 		);
 		const imagePosition = props.entry.fields.imagePosition;
-		let sizes: string;
-		let widths: number[];
-		if (imagePosition === 'left' || imagePosition === 'right') {
-			sizes = '20vw';
-			widths = [100, 200, 300];
-		} else {
-			sizes = '100vw';
-			widths = [300, 600, 900];
+		const isOnSide = imagePosition === 'left' || imagePosition === 'right';
+		let image: ImageAttributes | null = null;
+		if (props.entry.fields.image) {
+			const { getAttributes } = useImage(props.entry.fields.image);
+			image = getAttributes(props.gridSizes, isOnSide);
 		}
-		const image = props.entry.fields.image
-			? useImage(props.entry.fields.image, sizes, widths)
-			: null;
 		return {
 			contentPage,
 			imagePosition,
@@ -62,22 +60,23 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.teaser::after {
-	display: block;
-	content: '';
-	clear: both;
-}
 .teaser small {
 	display: block;
 	font-weight: bold;
 	margin-bottom: 0.6em;
 }
+.teaser.left a {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
 .teaser.left img {
-	float: left;
-	margin-right: 2vw;
+	margin-right: 1em;
+}
+.teaser.right a {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 .teaser.right img {
-	float: right;
-	margin-left: 2vw;
+	margin-left: 1em;
 }
 </style>

@@ -24,7 +24,9 @@ export default defineComponent({
 			props.entry.sys.id
 		);
 		const items = computed(() =>
-			carousel.value?.fields.items?.map(getComponentByType)
+			carousel.value?.fields.items?.map((item) =>
+				getComponentByType(item)
+			)
 		);
 		return {
 			items,
