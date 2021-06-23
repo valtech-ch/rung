@@ -69,14 +69,14 @@ export default defineComponent({
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 }
-.teaser.left img {
-	margin-right: 1em;
+.teaser.left .text {
+	margin-left: 1em;
 }
 .teaser.right a {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 }
-.teaser.right img {
-	margin-left: 1em;
+.teaser.right .text {
+	margin-right: 1em;
 }
 </style>

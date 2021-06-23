@@ -48,6 +48,11 @@ a {
 	color: currentColor;
 }
 
+img {
+	display: block;
+	width: 100%;
+}
+
 /* Navigation */
 .top-nav {
 	display: flex;
