@@ -12,15 +12,7 @@ import useContentful, {
 import { GridSizes } from '~/plugins/image';
 import { IGridItem, IGridItemFields } from '~/types/generated/contentful';
 
-function addBreakpointClass(
-	classList: string[],
-	fields: IGridItemFields,
-	property: Breakpoint
-): void {
-	if (fields && fields[property]) {
-		classList.push(`col-${property}-${fields[property]}`);
-	}
-}
+const BREAKPOINTS: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 export default defineComponent({
 	props: {
@@ -39,8 +31,10 @@ export default defineComponent({
 			const classList: string[] = [];
 			if (gridItem.value) {
 				const fields = gridItem.value.fields;
-				for (const bp of ['xs', 'sm', 'md', 'lg', 'xl']) {
-					addBreakpointClass(classList, fields, bp as Breakpoint);
+				let size = 12;
+				for (const bp of BREAKPOINTS) {
+					size = fields[bp] || size;
+					classList.push(`col-${bp}-${size}`);
 				}
 			}
 			return classList.join(' ');

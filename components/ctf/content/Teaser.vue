@@ -65,6 +65,9 @@ export default defineComponent({
 	font-weight: bold;
 	margin-bottom: 0.6em;
 }
+.teaser a {
+	text-decoration: none;
+}
 .teaser.left a {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
