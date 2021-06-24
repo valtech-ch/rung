@@ -91,6 +91,8 @@ export function getComponentByType(
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export const BREAKPOINTS: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+
 export default function useContentful(): UseContentfulType {
 	const { env } = useContext();
 	const config: CreateClientParams = {

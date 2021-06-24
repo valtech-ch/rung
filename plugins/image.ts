@@ -1,5 +1,5 @@
 import { Asset } from 'contentful';
-import { Breakpoint } from './contentful';
+import { Breakpoint, BREAKPOINTS } from './contentful';
 
 export interface GridSizes {
 	xs: number;
@@ -34,27 +34,6 @@ const MEDIA_SIZES: MediaSizes = {
 	xl: ``,
 };
 
-function getSize(
-	property: Breakpoint,
-	columns?: GridSizes,
-	isOnSide = false
-): string {
-	let colWidth = MAX_SIZES[property];
-	if (columns) {
-		colWidth = COLUMN_WIDTH * columns[property];
-	}
-	if (isOnSide) {
-		colWidth = Math.ceil(colWidth / 3);
-	}
-	return `${MEDIA_SIZES[property]} ${colWidth}px`;
-}
-function getWidth(property: Breakpoint, isOnSide = false): number {
-	if (isOnSide) {
-		return Math.ceil(MAX_SIZES[property] / 3);
-	}
-	return MAX_SIZES[property];
-}
-
 export interface ImageAttributes {
 	src: string;
 	srcset: string;
@@ -76,9 +55,20 @@ export default function useImage(image: Asset, alt?: string): UseImageType {
 		}
 		const sizes: string[] = [];
 		const widths: number[] = [];
-		for (const bp of ['xs', 'sm', 'md', 'lg', 'xl']) {
-			sizes.push(getSize(bp as Breakpoint, columns, isOnSide));
-			widths.push(getWidth(bp as Breakpoint, isOnSide));
+		let colSpan = 12;
+		for (const bp of BREAKPOINTS) {
+			let colWidth = MAX_SIZES[bp];
+			let width = MAX_SIZES[bp];
+			if (columns) {
+				colSpan = columns[bp] || colSpan;
+				colWidth = COLUMN_WIDTH * colSpan;
+			}
+			if (isOnSide) {
+				colWidth = Math.ceil(colWidth / 3);
+				width = Math.ceil(MAX_SIZES[bp] / 3);
+			}
+			sizes.push(`${MEDIA_SIZES[bp]} ${colWidth}px`);
+			widths.push(width);
 		}
 		const srcset = widths.map((width) => `${url}?w=${width} ${width}w`);
 		return {

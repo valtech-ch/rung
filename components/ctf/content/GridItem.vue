@@ -6,13 +6,11 @@
 <script lang="ts">
 import { computed, defineComponent, useAsync } from '@nuxtjs/composition-api';
 import useContentful, {
-	Breakpoint,
+	BREAKPOINTS,
 	getComponentByType,
 } from '~/plugins/contentful';
 import { GridSizes } from '~/plugins/image';
 import { IGridItem, IGridItemFields } from '~/types/generated/contentful';
-
-const BREAKPOINTS: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 export default defineComponent({
 	props: {
