@@ -1,3 +1,4 @@
+import { sortRoutes } from '@nuxt/utils';
 import contentfulConfig from './.contentful.json';
 
 export default {
@@ -38,6 +39,16 @@ export default {
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
+
+	router: {
+		extendRoutes(routes, resolve) {
+			routes.push({
+				path: '/home',
+				component: resolve(__dirname, 'pages/index.vue'),
+			});
+			sortRoutes(routes);
+		},
+	},
 
 	env: {
 		CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
