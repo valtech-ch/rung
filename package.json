@@ -45,6 +45,6 @@
 		"nuxt-vite": "^0.1.1",
 		"prettier": "^2.2.1",
 		"ts-jest": "^26.5.4",
-		"vue-jest": "^3.0.4"
+		"vue-jest": "^4.0.1"
 	}
 }
